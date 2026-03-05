@@ -1,0 +1,1 @@
+# it reads the data ingestion fro the data_source and forward to mqtt broker as topic
