@@ -1,0 +1,1 @@
+# script to initialize the database
