@@ -36,7 +36,7 @@ def generate_alfalfa_ndvi_5years():
     - UTCOffset: MST(-7) Nov-Mar, MDT(-6) Apr-Oct
     """
     
-    print("🌱 Initializing alfalfa NDVI generator (Pelican Lake, UT)...")
+    print("Initializing alfalfa NDVI generator (Pelican Lake, UT)...")
     
     # ============================================================================
     # 1. TIMESTAMPS: 5-YEAR GROWING SEASON (Naive datetime → ODM2 standard)
@@ -60,7 +60,7 @@ def generate_alfalfa_ndvi_5years():
     
     timestamps = pd.to_datetime(data)  # ODM2 LocalDateTime (naive → standard)
     n_records = len(timestamps)
-    print(f"   📅 {n_records:,} timestamps generated ({n_records//5:,}/year)")
+    print(f"{n_records:,} timestamps generated ({n_records//5:,}/year)")
     
     # ============================================================================
     # 2. ALFALFA PHENOLOGY MODEL (Seasonal growth curve)
@@ -136,7 +136,7 @@ def generate_alfalfa_ndvi_5years():
         'TS_min': TS_min                  # Integration start time
     })
     
-    print(f"✅ Generated {len(df):,} ODM2-ready records for MQTT pipeline")
+    print(f"Generated {len(df):,} ODM2-ready records for MQTT pipeline")
     return df
 
 # =============================================================================
@@ -152,12 +152,12 @@ if __name__ == "__main__":
     """
     df = generate_alfalfa_ndvi_5years()
     
-    print(f"\n🎯 PRODUCTION READY SUMMARY:")
-    print(f"   📈 Records:     {len(df):,}")
-    print(f"   📊 NDVI range:  {df['NDVI_avg'].min():.3f} - {df['NDVI_avg'].max():.3f}")
-    print(f"   ⏰ Time span:   {df['LocalDateTime'].min()} → {df['LocalDateTime'].max()}")
-    print(f"   🔋 Battery:     {df['Battery_V_avg'].min():.1f}V - {df['Battery_V_avg'].max():.1f}V")
-    print(f"\n📋 First 5 ODM2 records (MQTT-ready):")
+    print(f"\nPRODUCTION READY SUMMARY:")
+    print(f"Records:     {len(df):,}")
+    print(f"NDVI range:  {df['NDVI_avg'].min():.3f} - {df['NDVI_avg'].max():.3f}")
+    print(f"Time span:   {df['LocalDateTime'].min()} → {df['LocalDateTime'].max()}")
+    print(f"Battery:     {df['Battery_V_avg'].min():.1f}V - {df['Battery_V_avg'].max():.1f}V")
+    print(f"\nFirst 5 ODM2 records (MQTT-ready):")
     print(df[['LocalDateTime', 'UTCOffset', 'NDVI_avg', 'LowWatts_m2_avg']].head())
     
-    print("\n🚀 Ready for MQTT Publisher → Broker → ODM2 SQLite pipeline!")
+    print("\nReady for MQTT Publisher ==> Broker ==> ODM2 SQLite pipeline!")
