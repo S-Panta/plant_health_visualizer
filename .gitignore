@@ -1,3 +1,4 @@
 .venv
 mqtt/mosquitto/log
-mqtt/mosquitto/data
+__pycache__/
+mqtt/mosquitto/data/mosquitto.db
