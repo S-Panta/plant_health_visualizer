@@ -8,7 +8,6 @@ Created on Tue Mar 10 14:42:07 2026
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-# import random
 
 def generate_alfalfa_ndvi_5years():
     """
