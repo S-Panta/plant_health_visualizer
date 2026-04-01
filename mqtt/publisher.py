@@ -22,21 +22,34 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 #     })
 from data_source.script import generate_ndvi_data
 
+# broker is deployed locally
 BROKER_HOST = "localhost"
 BROKER_PORT = 1883
 TOPIC = "ndvi/sensor/data"
 CLIENT_ID = "ndvi_publisher"
 
-
-def on_connect(client, userdata, flags, reason_code, properties=None):
-    if reason_code == 0:
-        print("Publisher is connected to broker")
+def on_connect(client, userdata, flags, reason_code, properties):
+    if not reason_code.is_failure:
+        print(f"Connected to broker")
     else:
-        print(f"Connect failed: {reason_code}")
+        print(f"Coudn't establish connection with broker. Reason code : {reason_code}")
+        sys.exit(1)
+# this is called when the connection to broker fails
+def on_disconnect(client, userdata, flags, reason_code, properties):
+        print(f"Disconnected from broker.Result code:{reason_code}")
 
-
-def on_disconnect(client, userdata, reason_code, properties=None):
-    print(f"Disconnected: {reason_code}")
+def publish_data():
+    # NOTE: replace this with the generator that will be used
+    ndvi_data = generate_ndvi_data()
+    for _, row in ndvi_data.iterrows():
+        record = row.to_dict()
+        record["LocalDateTime"] = record["LocalDateTime"].isoformat()
+        payload = json.dumps(record)
+        client.publish(TOPIC, payload, qos=1)
+        # printing just for debug
+        print(record)
+        # change this to the frequency of data published by datalogger
+        time.sleep(5)
 
 
 client = mqtt.Client(
@@ -44,20 +57,12 @@ client = mqtt.Client(
 )
 client.on_connect = on_connect
 client.on_disconnect = on_disconnect
+
 client.connect(BROKER_HOST, BROKER_PORT)
+
 client.loop_start()
+publish_data()
 
-try:
-    ndvi_data = generate_ndvi_data()
-    for _, row in ndvi_data.iterrows():
-        record = row.to_dict()
-        record["LocalDateTime"] = record["LocalDateTime"].isoformat()
-        payload = json.dumps(record)
-        client.publish(TOPIC, payload, qos=1)
-        print(record)
-        # change this to the frequency of data published by datalogger
-        time.sleep(5)
-
-finally:
-    client.loop_stop()
-    client.disconnect()
+# when the program exits, these clean the memory
+client.loop_stop()
+client.disconnect()
