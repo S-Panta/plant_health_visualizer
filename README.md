@@ -5,7 +5,8 @@ A real time plant health visualizer using MQTT protocol.
 - This project use Mosquitto broker alpine docker image. To install docker on your machine, go to https://docs.docker.com/engine/install/.
 - Install the necessary library with the command "pip install -r requirements.txt" in your terminal of your IDE.
 - type "docker compose up" to run the broker.
-- Run publisher.py and subscriber.py. You can see both of them communicating with each other.
+- Run publisher.py and subscriber.py.
+- Download blank_odm.sqlite from [source] and place it in the project root
 
 ## Library
 - mqtt paho client for coding publisher and subscriber. https://pypi.org/project/paho-mqtt/
