@@ -9,7 +9,7 @@ from database.connection import DatabaseManager
 
 BROKER_HOST = "localhost"
 BROKER_PORT = 1883
-TOPIC = "ndvi/sensor/data"
+TOPIC = "campbell/NDVI_data"
 
 consumer = DatabaseManager()
 
