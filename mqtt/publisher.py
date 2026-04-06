@@ -14,7 +14,7 @@ from data_source.script import generate_ndvi_data
 # broker is deployed locally
 BROKER_HOST = "localhost"
 BROKER_PORT = 1883
-TOPIC = "ndvi/sensor/data"
+TOPIC = "campbell/NDVI_data"
 CLIENT_ID = "ndvi_publisher"
 
 
