@@ -2,3 +2,4 @@
 mqtt/mosquitto/log
 __pycache__/
 mqtt/mosquitto/data/mosquitto.db
+*.sqlite

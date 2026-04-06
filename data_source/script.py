@@ -3,9 +3,9 @@ import numpy as np
 from datetime import datetime, timedelta
 
 
-def generate_ndvi_data(n_records: int = 10):
-    """Generate synthetic NDVI sensor data at 15-minute intervals."""
-    # Remove this sample code and write the data generation function here
+def generate_ndvi_data(n_records: int = 25):
+    # """Generate synthetic NDVI sensor data at 15-minute intervals."""
+    # # Remove this sample code and write the data generation function here
     # now = datetime.now().replace(second=0, microsecond=0)
     # timestamps = [now - timedelta(minutes=15 * i) for i in range(n_records - 1, -1, -1)]
 
