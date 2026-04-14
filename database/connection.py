@@ -1,30 +1,25 @@
-# A singleton design pattern is suggested to make sure all your file points to
-# same database connection
 import sqlite3
 
 
 class DatabaseConnection:
-    _instance = None
-
-    def __init__(self):
+    def __init__(self, db_path="ndvi.sqlite"):
         try:
-            # Empty odm file should be at root directory of your project folder
-            self.connection = sqlite3.connect("ndvi.sqlite")
+            self.connection = sqlite3.connect(db_path)
+            self.connection.execute("PRAGMA journal_mode=WAL;")
             print("Connection successful!")
         except sqlite3.Error as e:
             print("Connection failed:", e)
             self.connection = None
 
-    @classmethod
-    def get_connection(cls):
-        if cls._instance is None:
-            cls._instance = DatabaseConnection()
-        return cls._instance.connection
+    def get_connection(self):
+        return self.connection
 
 
 class DatabaseManager:
     def __init__(self):
-        self.connection = DatabaseConnection.get_connection()
+        # give database path if your path is different
+        connection = DatabaseConnection()
+        self.connection = connection.get_connection()
         self.cursor = self.connection.cursor()
 
     def insert_row(self, table, data):
