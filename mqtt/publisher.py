@@ -3,6 +3,7 @@ import json
 import sys
 import os
 import paho.mqtt.client as mqtt
+from datetime import datetime, timedelta
 
 # this line is necessary for the relative imports
 # For more detail on how python imports the model, see https://docs.python.org/3/library/sys_path_init.html
@@ -36,7 +37,7 @@ def publish_data():
     ndvi_data = generate_ndvi_data()
     for _, row in ndvi_data.iterrows():
         record = row.to_dict()
-        record["LocalDateTime"] = record["LocalDateTime"].isoformat()
+       
         payload = json.dumps(record)
         client.publish(TOPIC, payload, qos=1)
         # printing just for debug
