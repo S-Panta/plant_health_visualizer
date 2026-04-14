@@ -15,10 +15,10 @@ consumer = DatabaseManager()
 
 
 def prepare_ndvi_data(payload):
-    local_dt = datetime.fromisoformat(payload["LocalDateTime"])
+    local_dt = datetime.strptime(payload["TIMESTAMP"], "%m/%d/%Y %H:%M")
     utc_dt = local_dt + timedelta(hours=7)
     return {
-        "DataValue": payload["NDVI_avg"],
+        "DataValue": payload["NDVI_Avg"],
         "ValueAccuracy": None,
         "LocalDateTime": local_dt.strftime("%Y-%m-%d %H:%M:%S"),
         "UTCOffset": -7.0,
