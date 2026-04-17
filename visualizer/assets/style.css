@@ -1,0 +1,129 @@
+/* 
+css comments do not removed 
+# -*- coding: utf-8 -*-
+
+Created on Fri Apr 17 16:39:09 2026
+
+@author: A02483178
+
+assets/style.css
+Dash automatically loads CSS files placed in the assets/ folder, which is the 
+recommended way to manage styling instead of embedding a large CSS block in Python.
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(180deg, #03160D 0%, #021109, 100%);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #F4FFF7;
+}
+
+.app-shell {
+    padding: 18px 24px 24px 24px;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.title-wrap h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.title-wrap p {
+    margin: 6px 0 0 0;
+    color: #A8CDB7;
+    font-size: 14px;
+}
+
+.status-pill {
+    background: rgba(30, 230, 110, 0.12);
+    border: 1px solid rgba(30, 230, 110, 0.28);
+    color: #7FF0AA;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.kpi-row {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.kpi-card {
+    flex: 1;
+    min-width: 200px;
+    background: linear-gradient(180deg, #0A2417 0%, #081E13 100%);
+    border: 1px solid rgba(120, 255, 170, 0.12);
+    border-radius: 16px;
+    padding: 16px 18px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.kpi-label {
+    color: #9AC8A9;
+    font-size: 13px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.kpi-value {
+    color: #1EE66E;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.kpi-sub {
+    color: #B8D8C2;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.timestamp-value {
+    font-size: 20px;
+}
+
+.chart-panel {
+    background: linear-gradient(180deg, #062113 0%, #041A10 100%);
+    border: 1px solid rgba(120, 255, 170, 0.10);
+    border-radius: 18px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.dash-graph {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .title-wrap h1 {
+        font-size: 24px;
+    }
+
+    .kpi-card {
+        min-width: 100%;
+    }
+
+    .app-shell {
+        padding: 14px;
+    }
+}
