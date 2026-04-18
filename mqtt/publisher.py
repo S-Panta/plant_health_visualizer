@@ -36,7 +36,6 @@ def publish_data():
     ndvi_data = generate_ndvi_data()
     for _, row in ndvi_data.iterrows():
         record = row.to_dict()
-
         payload = json.dumps(record)
         client.publish(TOPIC, payload, qos=1)
         # printing just for debug
