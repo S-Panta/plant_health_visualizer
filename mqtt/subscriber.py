@@ -15,7 +15,7 @@ consumer = DatabaseManager()
 
 
 def prepare_ndvi_data(payload):
-    local_dt = datetime.strptime(payload["TIMESTAMP"], "%m/%d/%Y %H:%M")
+    local_dt = datetime.strptime(payload["Timestamp"], "%m/%d/%Y %H:%M")
     utc_dt = local_dt + timedelta(hours=7)
     return {
         "DataValue": payload["NDVI_Avg"],
