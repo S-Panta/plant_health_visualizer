@@ -16,8 +16,9 @@ THRESHOLD = 0.85
 
 def create_layout():
     return html.Div([
+        dcc.Location(id="url"),
         dcc.Store(id="full-data-store"),
-        dcc.Store(id="current-index", data=1),
+        dcc.Store(id="current-index", data=0),
 
         dcc.Interval(
             id="interval",
@@ -34,7 +35,7 @@ def create_layout():
         html.Div([
             html.Div([
                 html.Div([
-                    html.H1("Alfalfa  Field Live Dashboard"),
+                    html.H1("Alfalfa Field Live Dashboard"),
                     html.P("Smart NDVI Monitoring • SQLite Feed • Mimic Real-Time Sensor")
                 ], className="title-wrap"),
                 html.Div("Live data stream simulation", className="status-pill")
