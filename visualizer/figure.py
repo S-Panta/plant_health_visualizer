@@ -12,7 +12,7 @@ like this makes the callback file much smaller and easier to read.
 import pandas as pd
 import plotly.graph_objs as go
 
-THRESHOLD = 0.72
+THRESHOLD = 0.85
 
 CUT_DATES = [
     "2025-10-01 01:00:00",

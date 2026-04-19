@@ -12,7 +12,7 @@ much easier to edit later.
 
 from dash import dcc, html
 
-THRESHOLD = 0.72
+THRESHOLD = 0.85
 
 def create_layout():
     return html.Div([
@@ -24,14 +24,20 @@ def create_layout():
             interval=1000,
             n_intervals=0
         ),
+        
+        dcc.Interval(
+            id="forecast-interval",
+            interval=30000,
+            n_intervals=0
+        ),
 
         html.Div([
             html.Div([
                 html.Div([
-                    html.H1("Alfalfa Live Dashboard"),
-                    html.P("NDVI monitoring • SQLite feed • Mimic real-time row-by-row plotting")
+                    html.H1("Alfalfa  Field Live Dashboard"),
+                    html.P("Smart NDVI Monitoring • SQLite Feed • Mimic Real-Time Sensor")
                 ], className="title-wrap"),
-                html.Div("Live stream simulation", className="status-pill")
+                html.Div("Live data stream simulation", className="status-pill")
             ], className="top-header"),
 
             html.Div([
@@ -53,6 +59,11 @@ def create_layout():
                     html.Div("Latest visible record", className="kpi-sub")
                 ], className="kpi-card"),
             ], className="kpi-row"),
+            
+            html.Div([
+                html.Div("7-DAY FORECAST", className="forecast-title"),
+                html.Div(id="forecast-table", className="forecast-table")
+            ], className="forecast-panel"),
 
             html.Div([
                 dcc.Graph(
